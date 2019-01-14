@@ -1,6 +1,7 @@
 package ru.spb.iac.DAO;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -8,15 +9,15 @@ import org.springframework.http.ResponseEntity;
 import ru.spb.iac.Entity.Person;
 
 public interface DAO<T> {
-	Optional<Person> get(long id);
+	Person get(long id);
 
-	Optional<Collection<Person>> getAll();
+	List<Person> getAll();
 
 	int update(T t);
 
-	int delete(T t);
+	int delete(long t);
 
 	public long getLastId();
 
-	void create(Person t);
+	void create(Person t) throws Exception;
 }

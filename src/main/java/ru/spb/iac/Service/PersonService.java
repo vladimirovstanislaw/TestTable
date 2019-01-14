@@ -1,22 +1,19 @@
 package ru.spb.iac.Service;
 
 import java.util.List;
-
-import DTO.PersonDTO;
 import ru.spb.iac.Entity.Person;
 
 public interface PersonService {
-	public void create(Person person);
+	public void create(Person person) throws Exception;
 
-	public void update();
-
-	public Person getById();
-
-	public void deleteById();
+	public int deleteById(long id);
 
 	public List<Person> getAll();
 
 	public void updateSomeRow();
-	
-	public boolean isValid(PersonDTO personDTO);
+
+	Person getById(long id);
+
+	int update(Person person);
+
 }

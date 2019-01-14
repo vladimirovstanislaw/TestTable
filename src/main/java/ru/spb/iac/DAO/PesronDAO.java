@@ -24,42 +24,53 @@ public class PesronDAO implements DAO<Person> {
 	private EntityManager entityManager;
 
 	@Override
-	public Optional<Person> get(long id) {
-		// TODO Auto-generated method stub
-		return Optional.ofNullable(entityManager.find(Person.class, id));
-	}
-
-	public Person getpure(long id) {
+	public Person get(long id) {
 		// TODO Auto-generated method stub
 		return entityManager.find(Person.class, id);
 	}
 
 	@Override
-	public Optional<Collection<Person>> getAll() {
+	public List<Person> getAll() {
 		// TODO Auto-generated method stub
-		return Optional.ofNullable((new ArrayList<Person>()));
+		List<Person> res = entityManager.createQuery("from Person", Person.class).getResultList();
+		return res;
 	}
 
 	@Override
-	public void create(Person t) {
+	public void create(Person t) throws Exception {
 		// TODO Auto-generated method stub
-		entityManager.persist(t);
+		if (t.getId() == 0) {
+			t.setId(getLastId() + 1);
+			entityManager.persist(t);
+			return;
+		} else {
+			throw new Exception();
+		}
+
 	}
 
 	@Override
 	public int update(Person t) {
 		// TODO Auto-generated method stub
-		
-		entityManager.refresh(t);
-		return 5;
-
+		Person person = entityManager.find(Person.class, t.getId());
+		if (person != null) {
+			person.setBirthDate(t.getBirthDate());
+			person.setComment(t.getComment());
+			person.setFirstName(t.getFirstName());
+			person.setLastName(t.getLastName());
+			person.setMiddleName(t.getMiddleName());
+			entityManager.persist(person);
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
-	public int delete(Person t) {
+	public int delete(long id) {
 		// TODO Auto-generated method stub
-		Query query=entityManager.createNativeQuery("DELETE FROM test.person WHERE id=" + t.getId() + ";");
-		 return query.executeUpdate();
+		Query query = entityManager.createNativeQuery("DELETE FROM test.person WHERE id=" + id + ";");
+		return query.executeUpdate();
 	}
 
 	public long getLastId() {
@@ -68,6 +79,10 @@ public class PesronDAO implements DAO<Person> {
 		Person p = (Person) query.getSingleResult();
 		return p.getId();
 
+	}
+
+	public boolean contains() {
+		return false;
 	}
 
 }
