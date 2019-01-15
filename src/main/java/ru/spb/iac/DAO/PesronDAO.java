@@ -79,7 +79,6 @@ public class PesronDAO implements DAO<Person> {
 		try {
 			p = (Person) query.getSingleResult();
 		} catch (NoResultException nre) {
-			// Ignore this because as per your logic this is ok!
 		} finally {
 
 		}

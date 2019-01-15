@@ -48,10 +48,6 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public List<Person> getAll() {
-//		List<PersonDTO> ls=new ArrayList<>();
-//		for(Person p:) {
-//			ls.add(PersonDTO.newDTO(p));
-//		}
 		return personDAO.getAll();
 	}
 

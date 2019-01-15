@@ -1,11 +1,6 @@
 package ru.spb.iac.DAO;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.http.ResponseEntity;
-
 import ru.spb.iac.Entity.Person;
 
 public interface DAO<T> {
