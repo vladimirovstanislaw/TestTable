@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Spring Boot + JPA + Datatables</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/js/datatable.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Person Table</h1>
+    <table id="personTable" class="display">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>lastName</th>
+                <th>firstName</th>
+                <th>middleName</th>
+                <th>birthDate</th>
+                <th>comment</th>
+                <th>updateDate</th>
+            </tr>
+        </thead>
+
+
+    </table>
+    <div id="tableButtons">
+        <button id="refresh">Refresh</button>
+        <button id="updateRows">Update</button>
+    </div>
+    <div class="down">
+        <div class="form-inlin justify-content-center">
+            <form action="/add" id="addForm" class="form-inline">
+
+                <div class="form-group">
+                    <label class="title" for="id">id</label>
+                    <input type="number" name="id" id="id" placeholder="id" />
+                </div>
+                <div class="form-group">
+                    <label class="title" for="lastName">lastName</label>
+                    <input type="text" name="lastName" placeholder="lastName..." id="lastName" maxlength="20" />
+                </div>
+                <div class="form-group">
+                    <label class="title" for="firstName">firstName</label>
+                    <input type="text" name="firstName" placeholder="firstName..." id="firstName" maxlength="20" />
+                </div>
+                <div class="form-group">
+                    <label class="title" for="middleName">middleName</label>
+                    <input type="text" name="middleName" placeholder="middleName..." id="middleName" maxlength="20" />
+                </div>
+                <div class="form-group">
+                    <label class="title" for="birthDate">birthDate</label>
+                    <input type="date" name="birthDate" placeholder="birthDate..." id="birthDate" />
+                </div>
+
+                <input type="submit" value="add" />
+
+
+
+            </form>
+            <div class="down20">
+                <button id="getById">GetById</button>
+                <button id="updateRow">UpdateRow</button>
+                <button id="deleteById">DeleteById</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

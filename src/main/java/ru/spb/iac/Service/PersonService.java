@@ -10,10 +10,9 @@ public interface PersonService {
 
 	public List<Person> getAll();
 
-	public void updateSomeRow();
-
-	Person getById(long id);
+	PersonDTO getById(long id);
 
 	int update(Person person);
-
+	
+	int updateSystemProperties(long m);
 }

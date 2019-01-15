@@ -1,5 +1,6 @@
 package ru.spb.iac.Entity;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,6 +15,11 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "person")
 public class Person {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Transient
 	private final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");

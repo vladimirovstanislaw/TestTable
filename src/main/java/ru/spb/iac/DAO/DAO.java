@@ -20,4 +20,6 @@ public interface DAO<T> {
 	public long getLastId();
 
 	void create(Person t) throws Exception;
+	
+	int updateSystemProperties(T t);
 }

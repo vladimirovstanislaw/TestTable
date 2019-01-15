@@ -1,6 +1,7 @@
 package ru.spb.iac.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,26 +18,22 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	DAO<Person> personDAO;
 
-	private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
 
 	@Override
 	public void create(Person person) throws Exception {
-		// TODO Auto-generated method stub
 		personDAO.create(person);
 
 	}
 
 	@Override
 	public int update(Person person) {
-		// TODO Auto-generated method stub
 		return personDAO.update(person);
 
 	}
 
 	@Override
-	public Person getById(long id) {
-		// TODO Auto-generated method stub
-		return personDAO.get(id);
+	public PersonDTO getById(long id) {
+		return PersonDTO.newDTO(personDAO.get(id));
 	}
 
 	@Override
@@ -47,19 +44,25 @@ public class PersonServiceImpl implements PersonService {
 			return personDAO.delete(id);
 		}
 		return 0;
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public List<Person> getAll() {
-		// TODO Auto-generated method stub
+//		List<PersonDTO> ls=new ArrayList<>();
+//		for(Person p:) {
+//			ls.add(PersonDTO.newDTO(p));
+//		}
 		return personDAO.getAll();
 	}
 
 	@Override
-	public void updateSomeRow() {
-		// TODO Auto-generated method stub
-
+	public int updateSystemProperties(long id) {
+		
+		Person person = personDAO.get(id);
+		if(person!=null)
+		{
+			return personDAO.updateSystemProperties(person);
+		}
+		return 0;
 	}
 }
