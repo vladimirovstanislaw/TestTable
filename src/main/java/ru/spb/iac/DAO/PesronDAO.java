@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +24,13 @@ public class PesronDAO implements DAO<Person> {
 
 	@Override
 	public Person get(long id) {
-		Person p=entityManager.find(Person.class, id);
-		if(p!=null) {
+		Person p = entityManager.find(Person.class, id);
+		if (p != null) {
 			return p;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -76,7 +75,17 @@ public class PesronDAO implements DAO<Person> {
 	public long getLastId() {
 		Query query = entityManager.createNativeQuery("SELECT * FROM test.person ORDER BY id DESC LIMIT 1;",
 				Person.class);
-		Person p = (Person) query.getSingleResult();
+		Person p=null;
+		try {
+			p = (Person) query.getSingleResult();
+		} catch (NoResultException nre) {
+			// Ignore this because as per your logic this is ok!
+		} finally {
+
+		}
+		if (p == null) {
+			return 0;
+		}
 		return p.getId();
 
 	}

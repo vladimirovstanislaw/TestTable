@@ -174,7 +174,6 @@ $(document).ready(function () {
             middleName = $form.find('input[name="middleName"]').val(),
             birthDate = $form.find('input[name="birthDate"]').val()
         var person = {
-            id: id,
             lastName: lastName,
             firstName: firstName,
             middleName: middleName,
